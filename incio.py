@@ -1,6 +1,7 @@
 
 from recursividad import sumaR, bbin, quicksort
 
+print("hola walter")
 
 # ejercicio 1
 '''
