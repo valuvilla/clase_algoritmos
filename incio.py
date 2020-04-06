@@ -1,8 +1,6 @@
 
 from recursividad import sumaR, bbin, quicksort
 
-print("hola walter")
-
 # ejercicio 1
 '''
 num1 = ('ingrese un valor')
