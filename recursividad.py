@@ -20,10 +20,11 @@ def factorial(numero):
         # 5! = 5 * 4!
         return numero * factorial(numero -1)
 
-
+'''
 print()
 print(factorial(5))
 print(factorialI(5))
+'''
 
 
 def fibonacciI(numero):
@@ -90,3 +91,53 @@ def quicksort(vector, primero, ultimo):
 
         quicksort(vector, primero, izq-1)
         quicksort(vector, izq+1, ultimo)
+
+def logaritmo(base, numero):
+    if(base == numero):
+        return 1
+    else:
+        return 1 + logaritmo(base, numero/base)
+
+
+def sucecion24(termino):
+    if(termino==1):
+        return 5.25
+    else:
+        return sucecion24(termino-1) * 4
+
+
+
+'''
+for i in range (10,0,-1):
+    print(sucecion24(i))
+'''
+
+
+def binario(numero):
+    if(numero <= 1):
+        return str(numero)
+    else:
+        return binario(numero//2) + str(numero % 2) 
+
+
+#print(binario(8))
+
+matriz = [[0] * 3, [1] * 3, [2] * 3, [3] * 3]
+
+'''
+
+for i in range(0, len(matriz)):
+    for j in range(0, len(matriz[i])):
+        print(matriz[i][j])
+'''
+
+vector = [1,2,3,4,5,6,7,8]
+
+def barrido(vec):
+    if(len(vec) == 1):
+        print(vec[0])
+    else:
+        print(vec[-1])
+        barrido(vec[0:-1])
+
+barrido(vector)

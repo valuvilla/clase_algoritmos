@@ -27,3 +27,5 @@ print("pila impar")
 while not pila_vacia(pilaimpar):
     x = desapilar(pilaimpar)
     print(x)
+
+
