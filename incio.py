@@ -8,8 +8,7 @@ print(sumaR(num1))
 '''
 a1 = 2
 r = -3
-
-
+ 
 def progresion(cantidad):
     if(cantidad == 1):
         return 2

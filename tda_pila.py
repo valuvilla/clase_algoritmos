@@ -24,7 +24,7 @@ def pila_llena(pila):
     return pila.cima == len(pila.datos)-1
 
 def tamanio(pila):
-    return len(pila.datos)
+    return pila.cima + 1
 
 def cima(pila):
     return pila.datos[pila.cima]

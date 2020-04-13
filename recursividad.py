@@ -141,3 +141,4 @@ def barrido(vec):
         barrido(vec[0:-1])
 
 barrido(vector)
+
