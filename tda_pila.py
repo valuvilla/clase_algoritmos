@@ -2,7 +2,7 @@
 class Pila():
     """Crear una pila vacia"""
     def __init__(self):
-        self.cima, self.datos = -1, [0] * 3
+        self.cima, self.datos = -1, [0] * 5
 
 
 def apilar(pila, dato):

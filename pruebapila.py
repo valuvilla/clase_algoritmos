@@ -1,6 +1,38 @@
 from tda_pila import Pila, pila_llena, pila_vacia, desapilar, apilar, tamanio, cima
+from random import randint
+
+'''
+pila = Pila()
+pila_aux = Pila()
+
+while(not pila_llena(pila)):
+    apilar(pila, randint(0, 100))
+
+print("pila normal")
+while(not pila_vacia(pila)):
+    x = desapilar(pila)
+    apilar(pila_aux, x)
+    print(x)
 
 
+pila = pila_aux
+
+print("pila invertida")
+while(not pila_vacia(pila)):
+    print(desapilar(pila))
+'''
+
+
+
+
+
+
+
+
+
+
+
+'''
 ep5 = Pila()
 ep7 = Pila()
 paux = Pila()
@@ -8,6 +40,8 @@ paux = Pila()
 while not pila_llena(ep5):
     x = input('ingrese nombre personaje ')
     apilar(ep5, x)
+
+
 while not pila_llena(ep7):
     x = input('ingrese nombre personaje ')
     apilar(ep7, x)
@@ -23,7 +57,7 @@ while(not pila_vacia(ep5)):
     while(not pila_vacia(paux)):
         xaux = desapilar(paux)
         apilar(ep7, xaux)
-
+'''
 
 """
 num = int(input('engrese el numero del elemento a modificar '))

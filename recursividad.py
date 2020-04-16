@@ -122,15 +122,26 @@ def binario(numero):
 
 #print(binario(8))
 
-matriz = [[0] * 3, [1] * 3, [2] * 3, [3] * 3]
+matriz = [[1,2,3], [4,5,6], [7,8,9], [10,11,12]]
 
+
+print("matriz")
 '''
-
 for i in range(0, len(matriz)):
     for j in range(0, len(matriz[i])):
         print(matriz[i][j])
 '''
+def barrido_matriz(mat, i, j):
+    if(i<len(mat) and j<len(mat[i])):
+        print(mat[i][j])
+        if(j == len(mat[i])-1):
+            i += 1
+            j = -1
+        barrido_matriz(mat, i, j+1)
 
+barrido_matriz(matriz, 0, 0)
+
+print("fin")
 vector = [1,2,3,4,5,6,7,8]
 
 def barrido(vec):
@@ -140,5 +151,43 @@ def barrido(vec):
         print(vec[-1])
         barrido(vec[0:-1])
 
-barrido(vector)
+# barrido(vector)
 
+vec = [['coordenadas', 'blaster principal', False],
+       ['coordenadas', 'blaster secundario', True],
+       ['coordenadas', 'cañon', True],
+       ['coordenadas', 'blaster principal', False]]
+
+def contar_naves(vec):
+    if(len(vec)==0):
+        return 0
+    else:
+        if(vec[-1][2]):
+            return 1 + contar_naves(vec[0:-1])
+        else:
+            return 0 + contar_naves(vec[0:-1])
+
+print("total de naves derribadas", contar_naves(vec))
+
+matriz = [[0,0,0,0,0],
+          [1,0,1,0,1],
+          [1,0,0,0,1],
+          [1,0,1,1,1],
+          [1,0,0,0,2]
+          ]
+
+
+def mcd(m, n):
+    """Cálculo del máximo comun divisor."""
+    if(m % n == 0):
+        return n
+    else:
+        return mcd(n, m % n)
+
+
+def mcm(m, n):
+    """Cálculo del mínimo comun multiplo."""
+    if(n % m == 0):
+        return n
+    else:
+        return mcm(n, m * n)
