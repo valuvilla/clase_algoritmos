@@ -31,8 +31,10 @@ def desapilar(pila):
 def pila_vacia(pila):
     return pila.cima is None
 
+
 def tamanio(pila):
     return pila.tamanio
+
 
 def cima(pila):
     return pila.cima.info
