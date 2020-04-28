@@ -1,5 +1,35 @@
-from tda_pila import Pila, pila_llena, pila_vacia, desapilar, apilar, tamanio, cima
+from tda_pila_dinamico import Pila, pila_vacia, desapilar, apilar, tamanio, cima
 from random import randint
+
+pila_personajes = Pila()
+
+archivo = open('personajes')
+
+linea = archivo.readline()
+
+print('archivo')
+while linea:
+    linea = linea.replace('\n', '')
+    linea = linea.split(';')
+    linea[0] = linea[0].title()
+    linea[1] = int(linea[1])
+    #print(linea)
+    apilar(pila_personajes, linea)
+    linea = archivo.readline()
+
+i = 1
+while(not pila_vacia(pila_personajes)):
+    personaje = desapilar(pila_personajes)
+    if(personaje[0] == 'Rocket Raccoon' or personaje[0] == 'Groot'):
+        print(personaje[0], 'esta en la posicion', i)
+    if(personaje[1]>5):
+        print(personaje[0], 'participo en mas de 5 peliculas')
+    if(personaje[0] == 'Black Widow'):
+        print(personaje[0], 'participo en', personaje[1], 'peliculas')
+    if(personaje[0][0] in ['C', 'D', 'G']):
+        print('comienza con', personaje[0])
+    i += 1 
+
 
 '''
 pila = Pila()

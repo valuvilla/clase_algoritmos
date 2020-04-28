@@ -1,10 +1,10 @@
 
-class nodoCola():
+class nodoCola(object):
     """crea una variable nodo cola"""
     def __init__(self):
         self.info, self.sig = None, None
 
-class Cola():
+class Cola(object):
     """TDA cola """
 
     def __init__(self):
@@ -46,7 +46,7 @@ def mover_final(cola):
     return x
 
 
-
+'''
 c = Cola()
 caux = Cola()
 
@@ -71,7 +71,7 @@ while tamanio(c)<10:
 print('barrido')
 for i in range(0, tamanio(c)):
     print(mover_final(c))
-
+'''
 '''
 while tamanio(c)<10:
     dato = int(input("ingrese un número"))

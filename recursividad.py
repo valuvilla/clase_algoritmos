@@ -72,25 +72,31 @@ def bbin(vector, buscado, primero, ultimo):
 
 # Quicksort
 def quicksort(vector, primero, ultimo):
-    if(primero<ultimo):
-        pivot = ultimo
-        izq = primero
-        der = ultimo-1
-        while(izq < der):
-            while(vector[izq] < vector[pivot]):
-                izq += 1
-            
-            while(vector[der] > vector[pivot]):
-                der -= 1
+    pila = Pila()
+    apilar(pila[primero, ultimo])
+    while(not pila_vacia(pila)):
+        dato = desapilar(pila)
+        primero = dato[0]
+        ultimo = dato[1]
+        if(primero<ultimo):
+            pivot = ultimo
+            izq = primero
+            der = ultimo-1
+            while(izq < der):
+                while(vector[izq] < vector[pivot]):
+                    izq += 1
+                
+                while(vector[der] > vector[pivot]):
+                    der -= 1
 
-            if(izq < der):
-                vector[izq], vector[der] = vector[der], vector[izq]
+                if(izq < der):
+                    vector[izq], vector[der] = vector[der], vector[izq]
 
-        if(vector[izq]>vector[pivot]):
-            vector[izq], vector[pivot] = vector[pivot], vector[izq]
+            if(vector[izq]>vector[pivot]):
+                vector[izq], vector[pivot] = vector[pivot], vector[izq]
 
-        quicksort(vector, primero, izq-1)
-        quicksort(vector, izq+1, ultimo)
+            apilar(pila,[primero, izq-1])#quicksort(vector, primero, izq-1)
+            apilar(pila,[izq+1, ultimo])#quicksort(vector, izq+1, ultimo)
 
 def logaritmo(base, numero):
     if(base == numero):
