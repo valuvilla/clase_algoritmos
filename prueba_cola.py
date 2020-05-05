@@ -1,7 +1,7 @@
 
 from tda_cola_dinamico import Cola, cola_vacia, arribo, atencion, tamanio, en_frente, mover_final
 
-
+'''
 cola1 = Cola()
 cola2 = Cola()
 print('cargar cola 1')
@@ -34,3 +34,21 @@ while(not cola_vacia(cola2)):
 
 for i in range(0, tamanio(cola1)):
     print(mover_final(cola1))
+'''
+from time import sleep
+cola = Cola()
+
+arribo(cola, [1, 10])
+arribo(cola, [2, 3])
+arribo(cola, [4, 5])
+
+while not cola_vacia(cola):
+    dato = atencion(cola)
+    print('atendiendo proceso', dato[0])
+    if(dato[1]>4.5):
+        dato[1] = dato[1] - 4.5
+        sleep(4.5)
+        arribo(cola, dato)
+    else:
+        sleep(dato[1])
+    # preguntar si quiere agregar proceso

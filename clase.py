@@ -27,3 +27,7 @@ p.estudio
 
 dato = ['titulo', 'estudio', 'anio']
 dato[1]
+
+
+
+     

@@ -1,6 +1,30 @@
 from tda_pila_dinamico import Pila, pila_vacia, desapilar, apilar, tamanio, cima
 from random import randint
 
+
+class Carta():
+
+    def __init__(self):
+        self.numero = None
+        self.palo = None
+
+pila = Pila()
+
+carta = Carta()
+carta.numero = int(input('ingrese el numero de la carta') )
+carta.palo = input('ingrese el palo de la carta')
+
+apilar(pila, carta)
+
+dato = desapilar(pila)
+print(dato.numero, dato.palo)
+
+
+
+
+
+
+'''
 pila_personajes = Pila()
 
 archivo = open('personajes')
@@ -29,7 +53,7 @@ while(not pila_vacia(pila_personajes)):
     if(personaje[0][0] in ['C', 'D', 'G']):
         print('comienza con', personaje[0])
     i += 1 
-
+'''
 
 '''
 pila = Pila()
