@@ -5,12 +5,12 @@ class nodoLista(object):
         self.info = None
         self.sig = None
 
+
 class Lista(object):
 
     def __init__(self):
         self.inicio = None
         self.tamanio = 0
-
 
 
 def insertar(lista, dato):
@@ -33,12 +33,32 @@ def insertar(lista, dato):
 
 
 def eliminar(lista, clave):
-    pass
+    dato = None
+    if(lista.inicio.info == clave):
+        dato = lista.inicio.info
+        lista.inicio = lista.inicio.sig
+        lista.tamanio -= 1
+    else:
+        act = lista.inicio.sig
+        ant = lista.inicio
+        while(act is not None and act.info != clave):
+            act = act.sig
+            ant = ant.sig
+        
+        if(act is not None):
+            dato = act.info
+            ant.sig = act.sig
+            lista.tamanio -= 1
+
+    return dato
 
 
 
 def busqueda(lista, clave):
-    pass
+    aux = lista.inicio
+    while(aux is not None and aux.info != clave):
+        aux = aux.sig
+    return aux
 
 
 def barrido(lista):
@@ -64,12 +84,16 @@ insertar(lista, 0)
 insertar(lista, 5)
 insertar(lista, 7)
 insertar(lista, 2)
-barrido(lista)
-a = input()
 insertar(lista, 4)
 insertar(lista, 100)
 barrido(lista)
 
-pos = busqueda(lista, 6)
+dato = eliminar(lista, 50)
+if(dato is not None):
+    print('elemento eliminado', dato)
+barrido(lista)
+pos = busqueda(lista, 40)
 if(pos is not None):
-    pass
+    print('elemento encontrado', pos.info)
+else:
+    print('no encontrado', pos)

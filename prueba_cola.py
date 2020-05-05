@@ -35,6 +35,7 @@ while(not cola_vacia(cola2)):
 for i in range(0, tamanio(cola1)):
     print(mover_final(cola1))
 '''
+
 from time import sleep
 cola = Cola()
 
@@ -52,3 +53,41 @@ while not cola_vacia(cola):
     else:
         sleep(dato[1])
     # preguntar si quiere agregar proceso
+'''
+from random import choice
+vehiculos = ['auto', 'camioneta', 'camion', 'colectivo']
+costo = [47, 59, 71, 64]
+
+puesto1 = Cola()
+puesto2 = Cola()
+puesto3 = Cola()
+total1 = 0
+total2 = 0
+total3 = 0
+for i in range (30):
+    arribo(puesto1, (choice(vehiculos)))
+    arribo(puesto2, (choice(vehiculos)))
+    arribo(puesto3, (choice(vehiculos)))
+
+while(not cola_vacia(puesto1)):
+    vehiculo = atencion(puesto1)
+    pos = vehiculos.index(vehiculo)
+    total1 += costo[pos]
+    
+    vehiculo = atencion(puesto2)
+    if(vehiculo=='auto'):
+        total2 += 47
+    elif(vehiculo=="camioneta"):
+        total2 += 57
+    vehiculo = atencion(puesto3)
+    if(vehiculo=='auto'):
+        total3 += 47
+    elif(vehiculo=="camioneta"):
+        total3 += 57
+
+
+from math import asin, sqrt, sin, cos, 
+r = 6371000
+
+formula = 2*r*asin(sqrt(sin((q1-q2)/2)**2 + cos(q1)*cos(q2) * sin((d1-d2)/2)**2 ))
+'''
