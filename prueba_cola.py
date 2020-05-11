@@ -35,8 +35,9 @@ while(not cola_vacia(cola2)):
 for i in range(0, tamanio(cola1)):
     print(mover_final(cola1))
 '''
-
+from random import randint
 from time import sleep
+'''
 cola = Cola()
 
 arribo(cola, [1, 10])
@@ -53,6 +54,11 @@ while not cola_vacia(cola):
     else:
         sleep(dato[1])
     # preguntar si quiere agregar proceso
+    resp = input('quiere cargar proces S/N?')
+    if(resp.upper() == 'S'):
+        tiempo = float(input('ingrese tiempo del proceso'))
+        arribo(cola,[randint(1, 500), tiempo])
+'''
 '''
 from random import choice
 vehiculos = ['auto', 'camioneta', 'camion', 'colectivo']
@@ -91,3 +97,47 @@ r = 6371000
 
 formula = 2*r*asin(sqrt(sin((q1-q2)/2)**2 + cos(q1)*cos(q2) * sin((d1-d2)/2)**2 ))
 '''
+
+from datetime import datetime
+from copy import copy
+
+tipos_aviones = ['carga', 'negocios', 'pasajeros']
+tiempo_despegue = [9, 3, 5]
+tiempo_aterrizaje = [12, 5, 10]
+
+
+cola_despegue = Cola()
+cola_aterrizaje = Cola()
+
+
+
+arribo(cola_despegue, ['airline', 'argentina', 'chile', 'carga', '07:00', '23:00'])
+arribo(cola_despegue, ['airline', 'argentina', 'india', 'pasajeros', '07:10', '23:00'])
+arribo(cola_despegue, ['airline', 'argentina', 'rusia', 'negocios', '07:17', '23:00'])
+
+arribo(cola_aterrizaje, ['airline', 'argentina', 'rusia', 'negocios', '07:00', '23:00'])
+
+hora_actual = datetime.now()
+
+while(not cola_vacia(cola_despegue) or not cola_vacia(cola_aterrizaje)):
+
+    hora_despegue = copy(hora_actual)
+    hora_despegue.hour = int(en_frente(cola_despegue)[4][0:2])
+    hora_despegue.min =int(en_frente(cola_despegue)[4][3:])
+
+    if(not cola_vacia(cola_aterrizaje) and hora_despegue<= hora_actual):
+        avion = atencion(cola_aterrizaje)
+        pos = tipos_aviones.index(avion[3])
+        tiempo = tiempo_aterrizaje[pos]
+        print('avion aterrizando...')
+        sleep(tiempo)
+    else:
+        avion = atencion(cola_despegue)
+        pos = tipos_aviones.index(avion[3])
+        tiempo = tiempo_despegue[pos]
+        print('avion despegando...')
+        sleep(tiempo)
+
+    hora_actual = datetime().now()
+    # preguntar si quiere agregar
+

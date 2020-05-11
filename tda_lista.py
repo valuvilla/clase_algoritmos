@@ -72,10 +72,10 @@ def tamanio(lista):
     return lista.tamanio
 
 
-def lista_vacia():
+def lista_vacia(lista):
     return lista.inicio is None
 
-
+'''
 lista = Lista()
 
 insertar(lista, 1)
@@ -97,3 +97,5 @@ if(pos is not None):
     print('elemento encontrado', pos.info)
 else:
     print('no encontrado', pos)
+
+'''
