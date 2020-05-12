@@ -5,12 +5,13 @@ lista_uno = Lista()
 lista_dos = Lista()
 
 for i in range(10):
-    insertar(lista_uno, [randint(0, 50),randint(0, 50)])
+    insertar(lista_uno, randint(0, 50))
 
 for i in range(43):
     insertar(lista_dos, randint(0, 50))
 
 aux = lista_uno.inicio
+barrido(lista_uno)
 
 while(aux is not None):
     pos = busqueda(lista_dos, aux.info)
