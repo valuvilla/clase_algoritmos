@@ -59,7 +59,7 @@ while not cola_vacia(cola):
         tiempo = float(input('ingrese tiempo del proceso'))
         arribo(cola,[randint(1, 500), tiempo])
 '''
-'''
+
 from random import choice
 vehiculos = ['auto', 'camioneta', 'camion', 'colectivo']
 costo = [47, 59, 71, 64]
@@ -81,63 +81,96 @@ while(not cola_vacia(puesto1)):
     total1 += costo[pos]
     
     vehiculo = atencion(puesto2)
-    if(vehiculo=='auto'):
-        total2 += 47
-    elif(vehiculo=="camioneta"):
-        total2 += 57
+    pos = vehiculos.index(vehiculo)
+    total2 += costo[pos]
+
     vehiculo = atencion(puesto3)
-    if(vehiculo=='auto'):
-        total3 += 47
-    elif(vehiculo=="camioneta"):
-        total3 += 57
+    pos = vehiculos.index(vehiculo)
+    total3 += costo[pos]
 
-
+'''
 from math import asin, sqrt, sin, cos, 
 r = 6371000
 
 formula = 2*r*asin(sqrt(sin((q1-q2)/2)**2 + cos(q1)*cos(q2) * sin((d1-d2)/2)**2 ))
 '''
 
-from datetime import datetime
-from copy import copy
+# from datetime import datetime
+# from copy import copy
 
-tipos_aviones = ['carga', 'negocios', 'pasajeros']
-tiempo_despegue = [9, 3, 5]
-tiempo_aterrizaje = [12, 5, 10]
-
-
-cola_despegue = Cola()
-cola_aterrizaje = Cola()
+# tipos_aviones = ['carga', 'negocios', 'pasajeros']
+# tiempo_despegue = [9, 3, 5]
+# tiempo_aterrizaje = [12, 5, 10]
 
 
+# cola_despegue = Cola()
+# cola_aterrizaje = Cola()
 
-arribo(cola_despegue, ['airline', 'argentina', 'chile', 'carga', '07:00', '23:00'])
-arribo(cola_despegue, ['airline', 'argentina', 'india', 'pasajeros', '07:10', '23:00'])
-arribo(cola_despegue, ['airline', 'argentina', 'rusia', 'negocios', '07:17', '23:00'])
 
-arribo(cola_aterrizaje, ['airline', 'argentina', 'rusia', 'negocios', '07:00', '23:00'])
 
-hora_actual = datetime.now()
+# arribo(cola_despegue, ['airline', 'argentina', 'chile', 'carga', '07:00', '23:00'])
+# arribo(cola_despegue, ['airline', 'argentina', 'india', 'pasajeros', '07:10', '23:00'])
+# arribo(cola_despegue, ['airline', 'argentina', 'rusia', 'negocios', '07:17', '23:00'])
 
-while(not cola_vacia(cola_despegue) or not cola_vacia(cola_aterrizaje)):
+# arribo(cola_aterrizaje, ['airline', 'argentina', 'rusia', 'negocios', '07:00', '23:00'])
 
-    hora_despegue = copy(hora_actual)
-    hora_despegue.hour = int(en_frente(cola_despegue)[4][0:2])
-    hora_despegue.min =int(en_frente(cola_despegue)[4][3:])
+# hora_actual = datetime.now()
 
-    if(not cola_vacia(cola_aterrizaje) and hora_despegue<= hora_actual):
-        avion = atencion(cola_aterrizaje)
-        pos = tipos_aviones.index(avion[3])
-        tiempo = tiempo_aterrizaje[pos]
-        print('avion aterrizando...')
-        sleep(tiempo)
-    else:
-        avion = atencion(cola_despegue)
-        pos = tipos_aviones.index(avion[3])
-        tiempo = tiempo_despegue[pos]
-        print('avion despegando...')
-        sleep(tiempo)
+# while(not cola_vacia(cola_despegue) or not cola_vacia(cola_aterrizaje)):
 
-    hora_actual = datetime().now()
+#     hora_despegue = copy(hora_actual)
+#     hora_despegue.hour = int(en_frente(cola_despegue)[4][0:2])
+#     hora_despegue.min =int(en_frente(cola_despegue)[4][3:])
+
+#     if(not cola_vacia(cola_aterrizaje) and hora_despegue<= hora_actual):
+#         avion = atencion(cola_aterrizaje)
+#         pos = tipos_aviones.index(avion[3])
+#         tiempo = tiempo_aterrizaje[pos]
+#         print('avion aterrizando...')
+#         sleep(tiempo)
+#     else:
+#         avion = atencion(cola_despegue)
+#         pos = tipos_aviones.index(avion[3])
+#         tiempo = tiempo_despegue[pos]
+#         print('avion despegando...')
+#         sleep(tiempo)
+
+#     hora_actual = datetime().now()
     # preguntar si quiere agregar
+
+# cola = Cola()
+# cola1 = Cola()
+
+# arribo(cola, 'luke')
+# arribo(cola, 'darth vader')
+# arribo(cola, 'yoda')
+# arribo(cola, 'chewbacca')
+# arribo(cola, 'kylo ren')
+# arribo(cola, 'jar jar binks')
+
+# for i in range(tamanio(cola)):
+#     print(mover_final(cola))
+
+# while(not cola_vacia(cola)):
+#     personaje = atencion(cola)
+#     if(personaje == 'yoda'):
+#         arribo(cola1, 'obi-wan kenobi')
+#     elif(personaje == 'jar jar binks' and not cola_vacia(cola)):
+#         atencion(cola)
+#     arribo(cola1, personaje)
+
+# cantidad = tamanio(cola)
+# i = 0
+# while(i<cantidad):
+#     personaje = atencion(cola)
+#     if(personaje == 'yoda'):
+#         arribo(cola, 'obi-wan kenobi')
+#     elif(personaje == 'jar jar binks' and i<cantidad-1):
+#         atencion(cola)
+#         i += 1
+#     arribo(cola, personaje)
+#     i += 1
+
+# for i in range(tamanio(cola1)):
+#     print(mover_final(cola1))
 
