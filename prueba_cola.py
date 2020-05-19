@@ -67,6 +67,7 @@ costo = [47, 59, 71, 64]
 puesto1 = Cola()
 puesto2 = Cola()
 puesto3 = Cola()
+cantidad1  = [0, 0, 0, 0]
 total1 = 0
 total2 = 0
 total3 = 0
@@ -79,6 +80,7 @@ while(not cola_vacia(puesto1)):
     vehiculo = atencion(puesto1)
     pos = vehiculos.index(vehiculo)
     total1 += costo[pos]
+    cantidad1[pos] += 1
     
     vehiculo = atencion(puesto2)
     pos = vehiculos.index(vehiculo)
