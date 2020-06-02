@@ -46,32 +46,32 @@ while(aux is not None):
 # barrido(lista_par)
 # print('impar')
 # barrido(lista_impar)
+lista = Lista()
+for i in range(100):
+    insertar(lista, chr(randint(65, 90)))
 
-# for i in range(100):
-#     insertar(lista, chr(randint(65, 90)))
 
+barrido(lista)
 
-# barrido(lista)
+dato = eliminar(lista, 'A')
+while(dato is not None):
+    dato = eliminar(lista, 'A')
 
-# dato = eliminar(lista, 'A')
-# while(dato is not None):
-#     dato = eliminar(lista, 'A')
+dato = eliminar(lista, 'E')
+while(dato is not None):
+    dato = eliminar(lista, 'E')
 
-# dato = eliminar(lista, 'E')
-# while(dato is not None):
-#     dato = eliminar(lista, 'E')
+dato = eliminar(lista, 'I')
+while(dato is not None):
+    dato = eliminar(lista, 'I')
 
-# dato = eliminar(lista, 'I')
-# while(dato is not None):
-#     dato = eliminar(lista, 'I')
+dato = eliminar(lista, 'O')
+while(dato is not None):
+    dato = eliminar(lista, 'O')
 
-# dato = eliminar(lista, 'O')
-# while(dato is not None):
-#     dato = eliminar(lista, 'O')
-
-# dato = eliminar(lista, 'U')
-# while(dato is not None):
-#     dato = eliminar(lista, 'U')
-# print()
-# barrido(lista)
+dato = eliminar(lista, 'U')
+while(dato is not None):
+    dato = eliminar(lista, 'U')
+print()
+barrido(lista)
 

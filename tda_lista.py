@@ -87,34 +87,34 @@ def criterio(dato, campo=None):
         return dic[campo]
 
 
-from random import randint
-lista1 = Lista()
-lista2 = Lista()
-listaaux = Lista()
+# from random import randint
+# lista1 = Lista()
+# lista2 = Lista()
+# listaaux = Lista()
 
 
-for i in range (10):
-    insertar(lista1, randint(0,20))
-    insertar(lista2, randint(0,20))
+# for i in range (10):
+#     insertar(lista1, randint(0,20))
+#     insertar(lista2, randint(0,20))
 
-print('lista 1')
-barrido(lista1)
-print('lista 2')
-barrido(lista2)
+# print('lista 1')
+# barrido(lista1)
+# print('lista 2')
+# barrido(lista2)
 
-repetidos = 0
-aux = lista2.inicio
-while(aux is not None):
-    pos = busqueda(lista1, aux.info)
-    if(pos is None):
-        insertar(lista1, aux.info)
-    else:
-        repetidos += 1
-    aux = aux.sig
+# repetidos = 0
+# aux = lista2.inicio
+# while(aux is not None):
+#     pos = busqueda(lista1, aux.info)
+#     if(pos is None):
+#         insertar(lista1, aux.info)
+#     else:
+#         repetidos += 1
+#     aux = aux.sig
 
-print('cantidad de repetidos', repetidos)
-print('lista concatenadas')
-barrido(lista1)
+# print('cantidad de repetidos', repetidos)
+# print('lista concatenadas')
+# barrido(lista1)
 
 
 
