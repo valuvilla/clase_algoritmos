@@ -1,6 +1,9 @@
 
 from tda_lista import Lista, insertar, eliminar, busqueda, tamanio, barrido
 
+
+
+
 def crear_tabla(tamanio):
     tabla = [None] * tamanio
     return tabla
@@ -15,17 +18,17 @@ def agregar_tc(tabla, dato):
         print('colision aplicar sondeo')
 
 
-def agregar_ta(tabla, dato):
-    posicion = hash_diccionario(dato, tabla)
+def agregar_ta(tabla, hash, dato, criterio=None):
+    posicion = hash(dato, tabla)
     if(tabla[posicion] is None):
         tabla[posicion] = Lista()
-    insertar(tabla[posicion], dato, 'palabra')
+    insertar(tabla[posicion], dato, criterio)
 
 
-def quitar_ta(tabla, dato):
-    posicion = hash_diccionario(dato, tabla)
+def quitar_ta(tabla, hash, dato, criterio=None):
+    posicion = hash(dato, tabla)
     if(tabla[posicion] is not None):
-        return eliminar(tabla[posicion], dato.palabra, 'palabra')
+        return eliminar(tabla[posicion], dato.palabra, criterio)
     else:
         return None
 
@@ -44,10 +47,10 @@ def quitar_tc(tabla, dato):
     return None
 
 
-def buscar_ta(tabla, dato):
-    posicion = hash_diccionario(dato, tabla)
+def buscar_ta(tabla, hash, dato, criterio=None):
+    posicion = hash(dato, tabla)
     if(tabla[posicion] is not None):
-        return busqueda(tabla[posicion], dato.palabra, 'palabra')
+        return busqueda(tabla[posicion], dato.palabra, criterio)
     else:
         return None
 
@@ -64,17 +67,28 @@ def buscar_tc(tabla, dato):
     return pos
 
 
-def hash(clave, tabla):
+def hash_division(clave, tabla):
     return clave % len(tabla)
 
 
-def bernstein(cadena):
+def hash_division_troopers(trooper, tabla):
+    return trooper.codigo % len(tabla)
+
+
+def bernstein(cadena, tabla):
     """Función hash de Bernstein para cadenas."""
     h = 0
     for caracter in cadena:
         h = h * 33 + ord(caracter)
-    return h
+    return h % len(tabla)
 
+
+def bernstein_troopers(trooper, tabla):
+    """Función hash de Bernstein para cadenas."""
+    h = 0
+    for caracter in trooper.legion:
+        h = h * 33 + ord(caracter)
+    return h % len(tabla)
 
 def cantidad_elementos_ta(tabla):
     cantidad = 0
@@ -106,27 +120,31 @@ class Palabra(object):
     def __str__(self):
         return self.palabra
 
+
+
+'''
 tabla = crear_tabla(26)
 
 # punto A
 palabra = Palabra('hola', 'es un saludo')
-agregar_ta(tabla, palabra)
+agregar_ta(tabla, palabra, 'palabra')
 palabra = Palabra('hielo', 'agua congelada')
-agregar_ta(tabla, palabra)
+agregar_ta(tabla, palabra, 'palabra')
 palabra = Palabra('arbol', 'asdasdsadsda')
-agregar_ta(tabla, palabra)
+agregar_ta(tabla, palabra, 'palabra')
 for i in tabla:
     if(i is not None):
         barrido(i)
 print()
 # punto B
-pos = buscar_ta(tabla, Palabra('hola',''))
+pos = buscar_ta(tabla, Palabra('hola',''), 'palabra')
 if(pos is not None):
     print('palabra', pos.info.palabra, 'significado', pos.info.significado)
 print()
 #punto C
-print('elemento eliminado', quitar_ta(tabla, Palabra('hielo','')))
+print('elemento eliminado', quitar_ta(tabla, Palabra('hielo',''), 'palabra'))
 
 for i in tabla:
     if(i is not None):
         barrido(i)
+'''
