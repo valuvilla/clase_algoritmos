@@ -9,13 +9,27 @@ def crear_tabla(tamanio):
     return tabla
 
 
-def agregar_tc(tabla, dato):
+tabla = [0, 1, None, 3, 4]
+
+def agregar_tc(tabla, hash, dato):
     posicion = hash(dato, tabla)
     if(tabla[posicion] is None):
         tabla[posicion] = dato
     else:
         #!completar
         print('colision aplicar sondeo')
+        if(posicion == len(tabla)-1):
+            posicion = -1
+        posaux = posicion
+        while(tabla[posicion+1] is not None and hash(tabla[posicion+1],tabla)==posaux):
+            posicion += 1
+            if(posicion == len(tabla)-1):
+                posicion = -1
+        
+        if(tabla[posicion+1] is None):
+            tabla[posicion+1] = dato
+        else:
+            print('hacer rehasing')
 
 
 def agregar_ta(tabla, hash, dato, criterio=None):
@@ -33,7 +47,7 @@ def quitar_ta(tabla, hash, dato, criterio=None):
         return None
 
 
-def quitar_tc(tabla, dato):
+def quitar_tc(tabla, hash, dato):
     dato = None
     posicion = hash(dato, tabla)
     if(tabla[posicion] is not None):
@@ -55,15 +69,25 @@ def buscar_ta(tabla, hash, dato, criterio=None):
         return None
 
 
-def buscar_tc(tabla, dato):
+def buscar_tc(tabla, hash, dato):
     pos = None
     posicion = hash(dato, tabla)
     if(tabla[posicion] is not None):
         if(tabla[posicion] == dato):
             pos = posicion
         else:
-            #! completar
             print('aplicar funcion colision seguir busco')
+            if(posicion == len(tabla)-1):
+                posicion = -1
+            #! completar
+            posaux = posicion
+            while(tabla[posicion+1] is not None and hash(tabla[posicion+1], tabla) == posaux):
+                posicion += 1
+                if(posicion == len(tabla)-1):
+                    posicion = -1
+                if(tabla[posicion] == dato):
+                    pos = posicion
+                    break
     return pos
 
 
@@ -119,6 +143,19 @@ class Palabra(object):
     
     def __str__(self):
         return self.palabra
+
+
+tabla = crear_tabla(10)
+agregar_tc(tabla, hash_division, 15)
+agregar_tc(tabla, hash_division, 25)
+agregar_tc(tabla, hash_division, 27)
+agregar_tc(tabla, hash_division, 5)
+
+print(buscar_tc(tabla, hash_division, 5))
+
+print(tabla)
+
+
 
 
 
