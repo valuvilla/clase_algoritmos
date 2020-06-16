@@ -106,6 +106,13 @@ def bernstein(cadena, tabla):
         h = h * 33 + ord(caracter)
     return h % len(tabla)
 
+def bernstein_palabra(cadena, tabla):
+    """Función hash de Bernstein para cadenas."""
+    h = 0
+    for caracter in cadena.palabra:
+        h = h * 33 + ord(caracter)
+    return h % len(tabla)
+
 
 def bernstein_troopers(trooper, tabla):
     """Función hash de Bernstein para cadenas."""
@@ -135,6 +142,10 @@ def cantidad_elementos_tc(tabla):
 def hash_diccionario(dato, tabla):
     return ord(dato.palabra[0].upper()) % len(tabla)
     
+
+def hash_cifrado(dato, tabla):
+    return ord(dato.palabra[0].upper()) % len(tabla)
+
 class Palabra(object):
 
     def __init__(self, palabra, significado):
@@ -142,9 +153,9 @@ class Palabra(object):
         self.significado = significado
     
     def __str__(self):
-        return self.palabra
+        return self.palabra+ ' '+self.significado
 
-
+'''
 tabla = crear_tabla(10)
 agregar_tc(tabla, hash_division, 15)
 agregar_tc(tabla, hash_division, 25)
@@ -154,7 +165,7 @@ agregar_tc(tabla, hash_division, 5)
 print(buscar_tc(tabla, hash_division, 5))
 
 print(tabla)
-
+'''
 
 
 

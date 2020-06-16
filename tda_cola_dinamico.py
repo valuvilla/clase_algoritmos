@@ -105,6 +105,6 @@ while not cola_vacia(caux):
 for i in range(0, tamanio(c)):
     print(mover_final(c))
 
-print("fin del barrido")
-print(tamanio(c))
+    print("fin del barrido")
+    print(tamanio(c))
 '''
