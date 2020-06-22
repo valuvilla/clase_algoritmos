@@ -73,7 +73,7 @@ def buscar_tc(tabla, hash, dato):
     pos = None
     posicion = hash(dato, tabla)
     if(tabla[posicion] is not None):
-        if(tabla[posicion] == dato):
+        if(tabla[posicion].codigo == dato.codigo):
             pos = posicion
         else:
             print('aplicar funcion colision seguir busco')
@@ -85,7 +85,7 @@ def buscar_tc(tabla, hash, dato):
                 posicion += 1
                 if(posicion == len(tabla)-1):
                     posicion = -1
-                if(tabla[posicion] == dato):
+                if(tabla[posicion].codigo == dato.codigo):
                     pos = posicion
                     break
     return pos
@@ -118,6 +118,14 @@ def bernstein_troopers(trooper, tabla):
     """Función hash de Bernstein para cadenas."""
     h = 0
     for caracter in trooper.legion:
+        h = h * 33 + ord(caracter)
+    return h % len(tabla)
+
+
+def bernstein_catedra(dato, tabla):
+    """Función hash de Bernstein para cadenas."""
+    h = 0
+    for caracter in dato.codigo[4:]:
         h = h * 33 + ord(caracter)
     return h % len(tabla)
 

@@ -3,10 +3,49 @@
 from tda_tabla_hash import crear_tabla, agregar_ta, bernstein_troopers, hash_division_troopers, bernstein_palabra, hash_division, hash_cifrado
 from random import choice, randint
 from tda_lista import barrido
-from tda_tabla_hash import buscar_ta, Palabra
+from tda_tabla_hash import buscar_ta, Palabra, bernstein_catedra
+from tda_tabla_hash import agregar_tc, buscar_tc, quitar_tc
+
+
+tabla = crear_tabla(50)
+
+class Catedra(object):
+
+    def __init__(self, codigo, nombre, modlidad, horas):
+        self.codigo = codigo
+        self.nombre = nombre
+        self.modalidad = modlidad
+        self. horas = horas
+        self.docentes = []
+    
+    def __str__(self):
+        return self.codigo+' '+self.nombre+' '+str(self.docentes)
+
+catedra = Catedra('ALG_34211', 'algoritmos y estructuras de datos', 'anual', 4)
+agregar_tc(tabla, bernstein_catedra, catedra)
+catedra = Catedra('ALG_34212', 'programacion orientada a objetos', 'anual', 5)
+agregar_tc(tabla, bernstein_catedra, catedra)
+catedra = Catedra('ALG_34213', 'fundamentos de programacion', 'anual', 5)
+agregar_tc(tabla, bernstein_catedra, catedra)
+catedra = Catedra('ALG_34323', 'progrmacion avanzada', 'cuatrimestral', 4)
+agregar_tc(tabla, bernstein_catedra, catedra)
+
+posicion = buscar_tc(tabla, bernstein_catedra, Catedra('ALG_34211','','',0))
+if(posicion is not None):
+    print('cargar docente')
+    tabla[posicion].docentes.append('Tito')
+posicion = buscar_tc(tabla, bernstein_catedra, Catedra('ALG_34211','','',0))
+if(posicion is not None):
+    print('cargar docente')
+    tabla[posicion].docentes.append('Walter')
+
+
+for catedra in tabla:
+    print(catedra)
 
 
 
+'''
 tabla = crear_tabla(10)
 
 tabla2 = crear_tabla(10)
@@ -63,7 +102,7 @@ for letras in lista:
     msj += decifrado
 
 print(msj)
-
+'''
 # for i in tabla:
 #     print(i)
 
