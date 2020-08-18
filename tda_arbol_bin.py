@@ -50,7 +50,6 @@ def por_nivel(raiz):
 
 def busqueda(raiz, buscado):
     if(raiz is not None):
-        print(raiz.info)
         if(raiz.info == buscado):
             return raiz
         else:
@@ -94,14 +93,53 @@ def eliminar_nodo(raiz, clave):
 
 arbol = None
 
-# arbol = insertar_nodo(arbol, 5)
-# arbol = insertar_nodo(arbol, 3)
-# arbol = insertar_nodo(arbol, 4)
-# arbol = insertar_nodo(arbol, 7)
-# arbol = insertar_nodo(arbol, 9)
-# arbol = insertar_nodo(arbol, 0)
-# arbol = insertar_nodo(arbol, 1)
-# arbol = insertar_nodo(arbol, 6)
+arbol = insertar_nodo(arbol, 5)
+arbol = insertar_nodo(arbol, 3)
+arbol = insertar_nodo(arbol, 4)
+arbol = insertar_nodo(arbol, 7)
+arbol = insertar_nodo(arbol, 9)
+arbol = insertar_nodo(arbol, 0)
+arbol = insertar_nodo(arbol, 1)
+arbol = insertar_nodo(arbol, 6)
+
+arbol = insertar_nodo(arbol, 7)
+arbol = insertar_nodo(arbol, 7)
+
+# 3 5
+cantp, canti = 0, 0
+
+def contar(raiz, cp, ci):
+    if(raiz is not None):
+        if(raiz.info % 2 == 0):
+            cp += 1
+        else:
+            ci += 1
+        cp, ci = contar(raiz.izq, cp, ci)
+        cp, ci = contar(raiz.der, cp, ci)
+    return cp, ci
+
+cantp, canti = contar(arbol, cantp, canti)
+print(cantp, canti)
+
+
+def contar_repetidos(raiz, buscado, cant):
+    if(raiz is not None):
+        if(raiz.info == buscado):
+            cant += 1
+            cant = contar_repetidos(raiz.der, buscado, cant)
+        else:
+            cant = contar_repetidos(raiz.izq, buscado, cant)
+    return cant
+
+cant = 0
+bus = 7
+pos = busqueda(arbol, bus)
+if(pos is not None):
+    print('asdas', contar_repetidos(pos, bus, cant))
+else:
+    print(0)
+
+
 
 #arbol, dato = eliminar_nodo(arbol, 5)
 # por_nivel(arbol)
@@ -112,10 +150,10 @@ arbol = None
 # else:
 #     print(pos)
 
-from random import randint
+# from random import randint
 
-for i in range(0, 1000):
-    arbol = insertar_nodo(arbol, randint(0, 50000))
+# for i in range(0, 1000):
+#     arbol = insertar_nodo(arbol, randint(0, 50000))
 
 # print('barrido inorden')
 # inorden(arbol)
@@ -126,14 +164,14 @@ for i in range(0, 1000):
 # print('barrido postorden')
 # postorden(arbol)
 # a = input()
-print('barrido por nivel')
-por_nivel(arbol)
-# a = input()
+# print('barrido por nivel')
+# por_nivel(arbol)
+# # a = input()
 
-buscado = int(input('ingrese valor buscado '))
-pos = busqueda(arbol, buscado)
+# buscado = int(input('ingrese valor buscado '))
+# pos = busqueda(arbol, buscado)
 
-if(pos is not None):
-    print('esta')
-else:
-    print('no esta')
+# if(pos is not None):
+#     print('esta')
+# else:
+#     print('no esta')
