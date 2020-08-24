@@ -7,6 +7,15 @@ class nodoArbol(object):
         self.der = None
         self.info = info
 
+
+class nodoArbolHuffman(object):
+    
+    def __init__(self, info, valor):
+        self.izq = None
+        self.der = None
+        self.info = info
+        self.valor = valor
+
 def insertar_nodo(raiz, dato):
     if(raiz is None):
         raiz = nodoArbol(dato)
@@ -41,7 +50,7 @@ def por_nivel(raiz):
     arribo(cola, raiz)
     while(not cola_vacia(cola)):
         nodo = atencion(cola)
-        print(nodo.info)
+        print(nodo.info, nodo.valor)
         if(nodo.izq is not None):
             arribo(cola, nodo.izq)
         if(nodo.der is not None):
@@ -91,22 +100,22 @@ def eliminar_nodo(raiz, clave):
                 raiz.info = aux.info
     return raiz, x
 
-arbol = None
+# arbol = None
 
-arbol = insertar_nodo(arbol, 5)
-arbol = insertar_nodo(arbol, 3)
-arbol = insertar_nodo(arbol, 4)
-arbol = insertar_nodo(arbol, 7)
-arbol = insertar_nodo(arbol, 9)
-arbol = insertar_nodo(arbol, 0)
-arbol = insertar_nodo(arbol, 1)
-arbol = insertar_nodo(arbol, 6)
+# arbol = insertar_nodo(arbol, 5)
+# arbol = insertar_nodo(arbol, 3)
+# arbol = insertar_nodo(arbol, 4)
+# arbol = insertar_nodo(arbol, 7)
+# arbol = insertar_nodo(arbol, 9)
+# arbol = insertar_nodo(arbol, 0)
+# arbol = insertar_nodo(arbol, 1)
+# arbol = insertar_nodo(arbol, 6)
 
-arbol = insertar_nodo(arbol, 7)
-arbol = insertar_nodo(arbol, 7)
+# arbol = insertar_nodo(arbol, 7)
+# arbol = insertar_nodo(arbol, 7)
 
 # 3 5
-cantp, canti = 0, 0
+# cantp, canti = 0, 0
 
 def contar(raiz, cp, ci):
     if(raiz is not None):
@@ -118,8 +127,8 @@ def contar(raiz, cp, ci):
         cp, ci = contar(raiz.der, cp, ci)
     return cp, ci
 
-cantp, canti = contar(arbol, cantp, canti)
-print(cantp, canti)
+# cantp, canti = contar(arbol, cantp, canti)
+# print(cantp, canti)
 
 
 def contar_repetidos(raiz, buscado, cant):
@@ -131,13 +140,13 @@ def contar_repetidos(raiz, buscado, cant):
             cant = contar_repetidos(raiz.izq, buscado, cant)
     return cant
 
-cant = 0
-bus = 7
-pos = busqueda(arbol, bus)
-if(pos is not None):
-    print('asdas', contar_repetidos(pos, bus, cant))
-else:
-    print(0)
+# cant = 0
+# bus = 7
+# pos = busqueda(arbol, bus)
+# if(pos is not None):
+#     print('asdas', contar_repetidos(pos, bus, cant))
+# else:
+#     print(0)
 
 
 
