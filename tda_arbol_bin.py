@@ -2,10 +2,11 @@ from tda_cola_dinamico import Cola, cola_vacia, arribo, atencion
 
 class nodoArbol(object):
 
-    def __init__(self, info):
+    def __init__(self, info, nrr=None):
         self.izq = None
         self.der = None
         self.info = info
+        self.nrr = nrr
 
 
 class nodoArbolHuffman(object):
@@ -16,14 +17,14 @@ class nodoArbolHuffman(object):
         self.info = info
         self.valor = valor
 
-def insertar_nodo(raiz, dato):
+def insertar_nodo(raiz, dato, nrr=None):
     if(raiz is None):
-        raiz = nodoArbol(dato)
+        raiz = nodoArbol(dato, nrr)
     else:
         if(raiz.info > dato):
-            raiz.izq = insertar_nodo(raiz.izq, dato)
+            raiz.izq = insertar_nodo(raiz.izq, dato, nrr)
         else:
-            raiz.der = insertar_nodo(raiz.der, dato)
+            raiz.der = insertar_nodo(raiz.der, dato, nrr)
     return raiz
 
 def inorden(raiz):
@@ -50,7 +51,7 @@ def por_nivel(raiz):
     arribo(cola, raiz)
     while(not cola_vacia(cola)):
         nodo = atencion(cola)
-        print(nodo.info, nodo.valor)
+        print(nodo.info)
         if(nodo.izq is not None):
             arribo(cola, nodo.izq)
         if(nodo.der is not None):
@@ -100,6 +101,19 @@ def eliminar_nodo(raiz, clave):
                 raiz.info = aux.info
     return raiz, x
 
+
+def hijo_der(arbol):
+    if(arbol.der is None):
+        print(arbol.der)
+    else:
+        print(arbol.der.info)
+
+def hijo_izq(arbol):
+    if(arbol.izq is None):
+        print(arbol.izq)
+    else:
+        print(arbol.izq.info)
+
 # arbol = None
 
 # arbol = insertar_nodo(arbol, 5)
@@ -113,6 +127,13 @@ def eliminar_nodo(raiz, clave):
 
 # arbol = insertar_nodo(arbol, 7)
 # arbol = insertar_nodo(arbol, 7)
+
+
+# pos = busqueda(arbol, 9)
+# if(pos is not None):
+#     hijo_der(pos)
+#     hijo_izq(pos)
+
 
 # 3 5
 # cantp, canti = 0, 0

@@ -34,8 +34,21 @@ while(len(bosque) > 1):
     bosque.sort(key=como_comparo_nodo)
 
 
-por_nivel(bosque[0])
+#por_nivel(bosque[0])
 
+def generar_tabla(raiz, cadena=''):
+    if(raiz is not None):
+        if(raiz.izq is None):
+            print(raiz.info, cadena)
+        else:
+            cadena += '0'
+            generar_tabla(raiz.izq, cadena)
+            cadena = cadena[0:-1]
+            cadena += '1'
+            generar_tabla(raiz.der, cadena)
+
+
+generar_tabla(bosque[0])
 
 def decodificar(cadena, arbol_huff):
     cadena_deco = ''
@@ -63,7 +76,8 @@ def codificar(cadena, dic):
 cadena = "AA31TF0AAMMMMMM0000"
 from sys import getsizeof
 cadena_cod = codificar(cadena, dic)
-print(getsizeof(cadena_cod), getsizeof(b'00000110011011110100000'))
+print(cadena_cod)
+print(getsizeof(cadena_cod), getsizeof(b'000001100110111101000001011101110111011101110111010101010101010'))
 print('cadena decodificada')
 cadena_deco = decodificar(cadena_cod, bosque[0])
 print(cadena_deco)

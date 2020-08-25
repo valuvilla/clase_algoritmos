@@ -21,27 +21,27 @@ def modificar(archivo, pos, reg):
 
 
 
-class Persona(object):
+# class Persona(object):
 
-    def __init__(self, nombre, dni):
-        self.nombre = nombre
-        self.dni = dni
+#     def __init__(self, nombre, dni):
+#         self.nombre = nombre
+#         self.dni = dni
 
-    def __str__(self):
-        return self.nombre +' '+ str(self.dni)
+#     def __str__(self):
+#         return self.nombre +' '+ str(self.dni)
 
 
-class Persona2(object):
+# class Persona2(object):
     
-    def __init__(self, nombre, dni, tel):
-        self.nombre = nombre
-        self.dni = dni
-        self.tel = tel
+#     def __init__(self, nombre, dni, tel):
+#         self.nombre = nombre
+#         self.dni = dni
+#         self.tel = tel
 
-    def __str__(self):
-        return self.nombre +' '+ str(self.dni)+' '+ str(self.tel)
+#     def __str__(self):
+#         return self.nombre +' '+ str(self.dni)+' '+ str(self.tel)
 
-file = abrir('persona')
+#file = abrir('jedis.txt')
 
 '''
 for i in range(3):
@@ -50,14 +50,14 @@ for i in range(3):
     persona = Persona(nombre, dni)
     guardar(file, persona)
 '''
-pos = 0
+# pos = 0
 
-while(pos < len(file)):
-    persona = leer(file, pos)
-    pos += 1
-    print(persona)
+# while(pos < len(file)):
+#     persona = leer(file, pos)
+#     pos += 1
+#     print(persona)
 
-cerrar(file)
+# cerrar(file)
 
 
 
