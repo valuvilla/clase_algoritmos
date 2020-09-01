@@ -33,6 +33,16 @@ def inorden(raiz):
         print(raiz.info)
         inorden(raiz.der)
 
+from tda_archivo import leer
+
+def inorden_lightsaber(raiz, archivo):
+    if(raiz is not None):
+        inorden_lightsaber(raiz.izq, archivo)
+        jedi = leer(archivo, raiz.nrr)
+        if(jedi[4].find('green') > -1):
+            print(raiz.info, jedi[4])
+        inorden_lightsaber(raiz.der, archivo)
+
 def postorden(raiz):
     if(raiz is not None):
         postorden(raiz.der)
@@ -67,6 +77,15 @@ def busqueda(raiz, buscado):
                 return busqueda(raiz.izq, buscado)
             else:
                 return busqueda(raiz.der, buscado)
+
+
+def busqueda_proximidad(raiz, buscado):
+    if(raiz is not None):
+        if(raiz.info[0:len(buscado)] == buscado):
+            print(raiz.info)
+        busqueda_proximidad(raiz.izq, buscado)
+        busqueda_proximidad(raiz.der, buscado)
+
 
 def arbol_vacio(raiz):
     return raiz is None

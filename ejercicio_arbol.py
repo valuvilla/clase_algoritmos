@@ -1,6 +1,6 @@
 
 from tda_archivo import abrir, leer, cerrar, guardar
-from tda_arbol_bin import insertar_nodo, inorden, por_nivel, busqueda
+from tda_arbol_bin import insertar_nodo, inorden, por_nivel, busqueda, inorden_lightsaber, busqueda_proximidad
 
 arbol_nombre = None
 arbol_ranking = None
@@ -18,17 +18,24 @@ while (pos <len(file)):
 cerrar(file)
 
 #b
-# inorden(arbol_nombre)
+# file = abrir('jedis')
+# inorden_lightsaber(arbol_nombre, file)
+# cerrar(file)
+#inorden(arbol_nombre)
 # a=input()
 
 #c
 # por_nivel(arbol_especie)
 # a=input()
 
+#proximidad
+busqueda_proximidad(arbol_nombre, 'l')
+
 #d
 pos = busqueda(arbol_nombre, 'luke skywalker')
 
 if(pos is not None):
+    print(pos.nrr)
     file = abrir('jedis')
     jedi = leer(file, pos.nrr)
     cerrar(file)
