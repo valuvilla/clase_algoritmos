@@ -7,6 +7,7 @@ class nodoArbol(object):
         self.der = None
         self.info = info
         self.nrr = nrr
+        self.altura = 0
 
 
 class nodoArbolHuffman(object):
@@ -17,6 +18,22 @@ class nodoArbolHuffman(object):
         self.info = info
         self.valor = valor
 
+
+def altura(raiz):
+    """Devuelve la altura de un nodo."""
+    if(raiz is None):
+        return -1
+    else:
+        return raiz.altura
+
+
+def actualizaraltura(raiz):
+    """Actualiza la altura de un nodo."""
+    if(raiz is not None):
+        alt_izq = altura(raiz.izq)
+        alt_der = altura(raiz.der)
+        raiz.altura = (alt_izq if alt_izq > alt_der else alt_der) + 1
+
 def insertar_nodo(raiz, dato, nrr=None):
     if(raiz is None):
         raiz = nodoArbol(dato, nrr)
@@ -25,6 +42,8 @@ def insertar_nodo(raiz, dato, nrr=None):
             raiz.izq = insertar_nodo(raiz.izq, dato, nrr)
         else:
             raiz.der = insertar_nodo(raiz.der, dato, nrr)
+    raiz = balancear(raiz)
+    actualizaraltura(raiz)
     return raiz
 
 def inorden(raiz):
@@ -60,7 +79,7 @@ def postorden(raiz):
 
 def preorden(raiz):
     if(raiz is not None):
-        print(raiz.info)
+        print(raiz.info, raiz.altura)
         preorden(raiz.izq)
         preorden(raiz.der)
 
@@ -134,6 +153,8 @@ def eliminar_nodo(raiz, clave):
             else:
                 raiz.izq, aux = remplazar(raiz.izq)
                 raiz.info = aux.info
+    raiz = balancear(raiz)
+    actualizaraltura(raiz)
     return raiz, x
 
 
@@ -148,3 +169,61 @@ def hijo_izq(arbol):
         print(arbol.izq)
     else:
         print(arbol.izq.info)
+
+
+def rotar_simple(raiz, control):
+    """Realiza una rotación simple de nodos a la derecha o a la izquierda."""
+    if control:
+        aux = raiz.izq
+        raiz.izq = aux.der
+        aux.der = raiz
+    else:
+        aux = raiz.der
+        raiz.der = aux.izq
+        aux.izq = raiz
+    actualizaraltura(raiz)
+    actualizaraltura(aux)
+    raiz = aux
+    return raiz
+
+def rotar_doble(raiz, control):
+    """Realiza una rotación doble de nodos a la derecha o a la izquierda."""
+    if control:
+        raiz.izq = rotar_simple(raiz.izq, False)
+        raiz = rotar_simple(raiz, True)
+    else:
+        raiz.der = rotar_simple(raiz.der, True)
+        raiz = rotar_simple(raiz, False)
+    return raiz
+
+
+def balancear(raiz):
+    """Determina que rotación hay que hacer para balancear el árbol."""
+    if(raiz is not None):
+        if(altura(raiz.izq)-altura(raiz.der) == 2):
+            if(altura(raiz.izq.izq) >= altura(raiz.izq.der)):
+                raiz = rotar_simple(raiz, True)
+            else:
+                raiz = rotar_doble(raiz, True)
+        elif(altura(raiz.der)-altura(raiz.izq) == 2):
+            if(altura(raiz.der.der) >= altura(raiz.der.izq)):
+                raiz = rotar_simple(raiz, False)
+            else:
+                raiz = rotar_doble(raiz, False)
+    return raiz
+
+
+arbol = None
+
+from random import randint
+
+for i in range(0, 16):
+    arbol = insertar_nodo(arbol,i)
+    preorden(arbol)
+
+print('final')
+preorden(arbol)
+
+pos = busqueda(arbol, 11)
+
+print('altura', altura(pos), pos.altura)
