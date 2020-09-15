@@ -17,6 +17,15 @@ class nodoArbolHuffman(object):
         self.info = info
         self.valor = valor
 
+class nodoArbolGreek(object):
+    
+    def __init__(self, info, madre, descipcion=None):
+        self.izq = None
+        self.der = None
+        self.info = info
+        self.madre = madre
+        self.descripcion = descipcion
+
 def insertar_nodo(raiz, dato, nrr=None):
     if(raiz is None):
         raiz = nodoArbol(dato, nrr)
@@ -148,3 +157,24 @@ def hijo_izq(arbol):
         print(arbol.izq)
     else:
         print(arbol.izq.info)
+
+
+def contar(raiz, cant=0):
+    if(raiz is not None):
+        cant += contar(raiz.izq, cant)
+        cant += contar(raiz.der, cant)
+        cant += 1
+        return cant
+    else:
+        return 0
+    
+
+
+    
+arbol = None
+
+for i in range(16):
+    arbol = insertar_nodo(arbol, i)
+
+inorden(arbol)
+print('cantidad de nodos', contar(arbol))

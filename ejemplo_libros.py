@@ -1,3 +1,8 @@
+
+#! ejercicio 21 lunes
+#! hacer ejercicio 12 martes
+
+
 from tda_archivo import abrir, cerrar, guardar, leer
 
 

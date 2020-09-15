@@ -219,11 +219,8 @@ from random import randint
 
 for i in range(0, 16):
     arbol = insertar_nodo(arbol,i)
-    preorden(arbol)
+    #preorden(arbol)
 
-print('final')
-preorden(arbol)
 
-pos = busqueda(arbol, 11)
 
-print('altura', altura(pos), pos.altura)
+print('altura', altura(arbol.der), altura(arbol.izq))

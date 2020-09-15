@@ -17,6 +17,15 @@ class nodoArbolHuffman(object):
         self.info = info
         self.valor = valor
 
+class nodoArbolGreek(object):
+    
+    def __init__(self, info, madre, descipcion=None):
+        self.izq = None
+        self.der = None
+        self.info = info
+        self.madre = madre
+        self.descripcion = descipcion
+
 def insertar_nodo(raiz, dato, nrr=None):
     if(raiz is None):
         raiz = nodoArbol(dato, nrr)
@@ -79,6 +88,15 @@ def busqueda(raiz, buscado):
                 return busqueda(raiz.der, buscado)
 
 
+def busqueda_nario(raiz, buscado, pos):
+    if(raiz is not None):
+        if(raiz.info == buscado):
+            pos.append(raiz)
+            return
+        busqueda_nario(raiz.izq, buscado, pos)
+        busqueda_nario(raiz.der, buscado, pos)
+
+
 def busqueda_proximidad(raiz, buscado):
     if(raiz is not None):
         if(raiz.info[0:len(buscado)] == buscado):
@@ -132,6 +150,34 @@ def hijo_izq(arbol):
         print(arbol.izq)
     else:
         print(arbol.izq.info)
+
+
+def insertar_nario(padre, hijo):
+    if(padre.izq is None):
+        #print('insertar hijo de', padre.info)
+        padre.izq = hijo
+    else:
+        aux = padre.izq
+        while(aux.der is not None):
+            aux = aux.der
+        #print('insertar hno de', aux.info)
+        aux.der = hijo
+
+
+def por_nivel_nario(raiz):
+    cola = Cola()
+    arribo(cola, raiz)
+    while(not cola_vacia(cola)):
+        nodo = atencion(cola)
+        print(nodo.info)
+        if(nodo.izq is not None):
+            arribo(cola, nodo.izq)
+        hno = nodo.der
+        while(hno is not None):
+            print(hno.info)
+            if(hno.izq is not None):
+                arribo(cola, hno.izq)
+            hno = hno.der
 
 # arbol = None
 
