@@ -121,6 +121,21 @@ def busqueda_proximidad(raiz, buscado):
         busqueda_proximidad(raiz.izq, buscado)
         busqueda_proximidad(raiz.der, buscado)
 
+def busqueda_proximidad_archivo(raiz, buscado, archivo):
+    if(raiz is not None):
+        if(raiz.info[0:len(buscado)] == buscado):
+            libro = leer(archivo, raiz.nrr)
+            print(libro.isbn, libro.cant, libro.titulo, libro.autores)
+        busqueda_proximidad_archivo(raiz.izq, buscado, archivo)
+        busqueda_proximidad_archivo(raiz.der, buscado, archivo)
+
+def busqueda_archivo(raiz, cantidad, archivo):
+    if(raiz is not None):
+        libro = leer(archivo, raiz.nrr)
+        if(libro.cant > cantidad):
+            print(libro.isbn, libro.cant, libro.titulo, libro.autores)
+        busqueda_archivo(raiz.izq, cantidad, archivo)
+        busqueda_archivo(raiz.der, cantidad, archivo)
 
 def arbol_vacio(raiz):
     return raiz is None
@@ -212,15 +227,32 @@ def balancear(raiz):
                 raiz = rotar_doble(raiz, False)
     return raiz
 
+def cortar_por_nivel(raiz, bosque):
+    cola = Cola()
+    arribo(cola, raiz)
+    while(not cola_vacia(cola)):
+        nodo = atencion(cola)
+        if(altura(nodo) == 7 ):
+            bosque.append(nodo.izq)
+            bosque.append(nodo.der)
+        if(nodo.izq is not None):
+            arribo(cola, nodo.izq)
+        if(nodo.der is not None):
+            arribo(cola, nodo.der)
 
-arbol = None
+def contar(raiz, cantidad):
+    if(raiz is not None):
+        contar(raiz.izq, cantidad)
+        contar(raiz.der, cantidad)
+        cantidad[0] += 1
+# arbol = None
 
-from random import randint
+# from random import randint
 
-for i in range(0, 16):
-    arbol = insertar_nodo(arbol,i)
-    #preorden(arbol)
+# for i in range(0, 16):
+#     arbol = insertar_nodo(arbol,i)
+#     #preorden(arbol)
 
 
 
-print('altura', altura(arbol.der), altura(arbol.izq))
+# print('altura', altura(arbol.der), altura(arbol.izq))
