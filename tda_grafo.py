@@ -18,9 +18,10 @@ class nodoArista(object):
 class nodoVertice(object):
     """Clase nodo vértice."""
 
-    def __init__(self, info):
+    def __init__(self, info, datos=None):
         """Crea un nodo vértice con la información cargada."""
         self.info = info
+        self.datos = datos
         self.sig = None
         self.visitado = False
         self.adyacentes = Arista() # lista de aristas
@@ -45,9 +46,9 @@ class Arista(object):
         self.tamanio = 0
 
 
-def insertar_vertice(grafo, dato):
+def insertar_vertice(grafo, dato, datos=None):
     """Inserta un vértice al grafo."""
-    nodo = nodoVertice(dato)
+    nodo = nodoVertice(dato, datos)
     if (grafo.inicio is None or grafo.inicio.info > dato):
         nodo.sig = grafo.inicio
         grafo.inicio = nodo
@@ -104,30 +105,38 @@ def eliminar_vertice(grafo, clave):
         aux = grafo.inicio
         while(aux is not None):
             if(aux.adyacentes.inicio is not None):
-                eliminar_arista(aux.adyacentes, clave)
+                quitar_arista(aux.adyacentes, clave)
             aux = aux.sig
         # aca terminar eliminar aristas adyacenes grafo no dirigido
     return x
 
 
-def eliminar_arista(vertice, destino):
-    """Elimina una arsita del vertice y lo devuelve si lo encuentra."""
+def quitar_arista(vertice, destino):
     x = None
-    if(vertice.inicio.destino == destino):
-        x = vertice.inicio.info
-        vertice.inicio = vertice.inicio.sig
-        vertice.tamanio -= 1
+    if(vertice.adyacentes.inicio.destino == destino):
+        x = vertice.adyacentes.inicio.info
+        vertice.adyacentes.inicio = vertice.adyacentes.inicio.sig
+        vertice.adyacentes.tamanio -= 1
     else:
-        ant = vertice.inicio
-        act = vertice.inicio.sig
+        ant = vertice.adyacentes.inicio
+        act = vertice.adyacentes.inicio.sig
         while(act is not None and act.destino != destino):
             ant = act
             act = act.sig
         if (act is not None):
             x = act.info
             ant.sig = act.sig
-            vertice.tamanio -= 1
-    # aca terminar eliminar arista no dirigido
+            vertice.adyacentes.tamanio -= 1
+    return x
+
+def eliminar_arista(grafo, vertice, destino):
+    """Elimina una arsita del vertice y lo devuelve si lo encuentra."""
+    x = quitar_arista(vertice, destino)    
+    
+    if(not grafo.dirigido):
+        ori = buscar_vertice(grafo, destino)
+        quitar_arista(ori, vertice.info)
+
     return x
 
 def barrido_vertices(grafo):
@@ -292,8 +301,24 @@ def kruskal(grafo):
             bosque.append(origen)
     return bosque[0]
 
+def existe_paso(grafo, origen, destino):
+    """Barrido en profundidad del grafo."""
+    resultado = False
+    if(not origen.visitado):
+        origen.visitado = True
+        vadyacentes = origen.adyacentes.inicio
+        while(vadyacentes is not None and not resultado):
+            adyacente = buscar_vertice(grafo, vadyacentes.destino)
+            if(adyacente.info == destino.info):
+                return True
+            elif(not adyacente.visitado):
+                resultado = existe_paso(grafo, adyacente, destino)
+            vadyacentes = vadyacentes.sig
+    return resultado
+
 g = Grafo(False)
 
+insertar_vertice(g, 'ARGENTINA', [-32, -58, 5])
 insertar_vertice(g, 'A')
 insertar_vertice(g, 'B')
 insertar_vertice(g, 'C')
@@ -329,17 +354,30 @@ des = buscar_vertice(g, 'Z')
 insertar_arista(g, 19, ori, des)
 
 # print('profundidad')
-# ori = buscar_vertice(g, 'F')
+# ori = buscar_vertice(g, 'A')
 # barrido_profundidad(g, ori)
 # marcar_no_visitado(g)
 # print()
 # print('amplitud')
-# ori = buscar_vertice(g, 'F')
+# ori = buscar_vertice(g, 'A')
 # barrido_amplitud(g, ori)
+# des = buscar_vertice(g, 'J')
+
+# print()
+# print('existe paso')
+# marcar_no_visitado(g)
+# print(existe_paso(g, ori, des))
+# print()
+ori = buscar_vertice(g, 'B')
+x = eliminar_arista(g, ori, 'F')
+print('dato eliminado', x)
+
+barrido_vertices(g)
+
 
 print('dijkstra')
 camino_mas_corto = dijkstra(g, 'A', 'J')
-fin = 'Z'
+fin = 'J'
 peso_total = None
 while(not pila_vacia(camino_mas_corto)):
     dato = desapilar(camino_mas_corto)
@@ -357,8 +395,8 @@ bosque = prim(g)
 for i in range(0,len(bosque),2):
     print (bosque[i], bosque[i+1])
 
-print()
-print('prim')
-bosque = kruskal(g)
-for i in range(0,len(bosque),2):
-    print (bosque[i], bosque[i+1])
+# print()
+# print('kruskal')
+# bosque = kruskal(g)
+# for i in range(0,len(bosque),2):
+#     print (bosque[i], bosque[i+1])
