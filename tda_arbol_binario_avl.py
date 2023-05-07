@@ -335,6 +335,8 @@ arbol = insertar_nodo_clima(arbol, datos)
 
 preorden(arbol)
 
+print('altura', altura(arbol.der), altura(arbol.izq))
+
 
 # def barrido(raiz):
 #     if(raiz.info[raiz.campo] > raiz.umbral):
